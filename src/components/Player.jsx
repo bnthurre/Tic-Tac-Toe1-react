@@ -3,12 +3,12 @@ import { useState } from "react";
 export default function Player({ name, symbol }) {
   const [isEditing, setIsEditing] = useState(false);
   const HandlerEditClick = () => {
-    setIsEditing(true);
+    setIsEditing(!isEditing);
   };
 
   let playerName = <span className="player-name">{name}</span>;
   if (isEditing) {
-    playerName = <input type="text" name="" id="" />;
+    playerName = <input type="text"  required value={name}/>;
   }
   return (
     <li>
@@ -16,7 +16,7 @@ export default function Player({ name, symbol }) {
         {playerName}
         <span className="player-symbol">{symbol}</span>
       </span>
-      <button onClick={HandlerEditClick}>edit</button>
+      <button onClick={HandlerEditClick}>{isEditing ? 'save' : 'edit'}</button>
     </li>
   );
 }
